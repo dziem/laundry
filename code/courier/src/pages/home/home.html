@@ -1,0 +1,25 @@
+<ion-header>
+ <ion-navbar hideBackButton="true">
+ <ion-title>
+ Home
+ </ion-title>
+ <ion-buttons end>
+ <button ion-button (click)="goFind()">Find Request</button>
+ 
+ </ion-buttons>
+ </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-list>
+ <!--<ion-item *ngFor="let request of requestList" (click)="goDetail(order.orderID)">-->
+ <ion-item *ngFor="let request of requestList">
+ <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
+ <p>{{request.date}} - {{request.time}}</p>
+ <ion-buttons end>
+ <button *ngIf=" request.type == 'Pickup'" (click)="pickup(request.requestID)" ion-button>View Detail</button>
+ <button *ngIf=" request.type == 'Delivery'" (click)="delivery(request.requestID)" ion-button>View Detail</button>
+ </ion-buttons>
+ </ion-item>
+ </ion-list>
+</ion-content>

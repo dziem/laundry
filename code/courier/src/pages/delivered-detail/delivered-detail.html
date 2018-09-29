@@ -1,0 +1,21 @@
+<ion-header>
+ <ion-navbar>
+ <ion-title>
+Delivered Detail
+ </ion-title>
+ </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-list>
+ <ion-item *ngFor="let request of requestList">
+ <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
+ <p>{{request.date}} - {{request.time}}</p>
+ <p>{{request.courierID}}</p>
+ <p>{{request.payment}}</p>
+ <ion-buttons end>
+ <button ion-button *ngIf="request.rstatus != 'Done'" (click)="done(request.requestID, request.orderID)">Done</button>
+ </ion-buttons>
+ </ion-item>
+ </ion-list>
+</ion-content>
