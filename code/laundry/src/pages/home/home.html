@@ -1,0 +1,21 @@
+<ion-header>
+ <ion-navbar hideBackButton="true">
+ <ion-title>
+ Home
+ </ion-title>
+ <ion-buttons end>
+ <button ion-button (click)="goAddNew()">Order</button>
+ </ion-buttons>
+ </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-list>
+ <ion-item *ngFor="let order of orderList">
+ <h2>{{order.stype}}</h2><p item-right> {{order.price}}</p>
+ <p>{{order.status}}</p>
+ <button ion-button (click)="goDetail(order.orderID)">View Detail</button>
+ <button ion-button *ngIf=" order.status == 'Ready To Deliver'" (click)="goRequest(order.orderID)">Schedule Delivery</button>
+ </ion-item>
+ </ion-list>
+</ion-content>
