@@ -1,29 +1,88 @@
 <ion-header>
  <ion-navbar>
- <ion-title>
-Picked Detail
+ <ion-title text-center>
+Pickup Detail
  </ion-title>
  </ion-navbar>
 </ion-header>
 
-<ion-content padding>
- <ion-list>
- <ion-item *ngFor="let request of requestList">
- <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
- <p>{{request.date}} - {{request.time}}</p>
- <p>{{request.courierID}}</p>
- <p>{{ovrp}}</p>
-
- <button ion-button *ngIf="request.rstatus != 'Done'" (click)="done(request.requestID, weight, ovrp, paid, request.orderID)">Done</button>
-
- </ion-item>
- <ion-item>
- <ion-label stacked>Weight</ion-label>
- <ion-input type="number" (change)=setPrice(weight) [(ngModel)]="weight"></ion-input>
- </ion-item>
- <ion-item>
-    <ion-label>Paid</ion-label>
-    <ion-checkbox checked="false" [(ngModel)]="paid"></ion-checkbox>
-  </ion-item>
- </ion-list>
+<ion-content style="margin-bottom: 44px;" padding>
+ <div *ngFor="let request of requestList">
+ <ion-card>
+ <ion-card-header>
+ <h2>Pickup Info</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row"><span class="col col-50"><strong>Customer Name</strong></span><span class="col col-50" style="text-align: right">{{request.name}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Phone Number</strong></span><span class="col col-50" style="text-align: right">{{request.phoneNumber}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Pickup Time</strong></span><span class="col col-50" style="text-align: right">{{request.date}}, {{request.time}}</span></div>
+ </ion-card-content>
+ </ion-card>
+ <ion-card>
+ <ion-card-header>
+ <h2>Pickup Address</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row"><span class="col col-100"><p>{{request.address}}</p></span></div>
+  </ion-card-content>
+ </ion-card>
+ <ion-card>
+ <ion-card-header>
+ <h2>Pickup Note</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row">
+	<span class="col col-100">
+	<p *ngIf=" request.note != ''">{{request.note}}</p>
+	<p *ngIf=" request.note == ''">-</p>
+	</span>
+ </div>
+  </ion-card-content>
+ </ion-card>
+ <ion-card>
+ <ion-card-header>
+ <h2>Pricing</h2>
+ </ion-card-header>
+ <ion-card-content>
+	<div class="item row">
+		<div class="col col-50"><strong>Laundry Weight</strong></div>		
+		<div class="col col-50" style="text-align: right">
+		<span *ngIf="request.rstatus == 'Done'">{{request.weight}} kg</span>
+		 <ion-list *ngIf="request.rstatus != 'Done'">
+		 <ion-item>
+		 <ion-input type="number" (change)=setPrice(weight) [(ngModel)]="weight"></ion-input>
+		 </ion-item>
+		 </ion-list>
+		</div>
+	</div>
+	<div class="item row">
+		<div class="col col-50"><strong>Service Type</strong></div>
+		<div class="col col-50" style="text-align: right">{{request.stype}}<br>{{typep}}/kg</div>
+	</div>
+	<div class="item row">
+		<div class="col col-50"><strong>Service Time</strong></div>
+		<div class="col col-50" style="text-align: right;border-bottom: solid 1px #ddd;">{{request.stime}}<br>{{timep}}/kg</div>
+	</div>
+	<div class="item row">
+		<div class="col col-50"><h1>Total Price</h1></div>
+		<div class="col col-50" style="text-align: right">
+			<h1 *ngIf="request.rstatus != 'Done'">{{ovrp}}</h1>
+			<h1 *ngIf="request.rstatus == 'Done'">{{request.price}}</h1>
+			<p *ngIf="request.rstatus == 'Done'">{{request.payment}}</p>
+			<ion-list *ngIf="request.rstatus != 'Done'">
+			<ion-item>
+			<ion-label>Paid</ion-label>
+			<ion-checkbox checked="false" [(ngModel)]="paid"></ion-checkbox>
+			</ion-item>
+			</ion-list>
+		</div>
+	</div>
+  </ion-card-content>
+ </ion-card>
+ </div>
 </ion-content>
+<ion-footer no-shadow no-border>
+	<ion-toolbar position="bottom" transparent *ngFor="let request of requestList">
+		<button ion-button full *ngIf="request.rstatus != 'Done'" (click)="done(request.requestID, weight, ovrp, paid, request.orderID)">Done</button>
+	</ion-toolbar>
+</ion-footer>

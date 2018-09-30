@@ -1,6 +1,6 @@
 <ion-header>
  <ion-navbar>
- <ion-title>
+ <ion-title text-center>
 Delivery Detail
  </ion-title>
  </ion-navbar>
@@ -9,11 +9,45 @@ Delivery Detail
 <ion-content padding>
  <ion-list>
  <ion-item *ngFor="let request of requestList">
- <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
- <p>{{request.date}} - {{request.time}}</p>
- <ion-buttons end>
- <button ion-button (click)="take(request.requestID, userID, request.type, request.orderID)">Take</button>
- </ion-buttons>
+ <ion-card>
+ <ion-card-header>
+ <h2>Delivery Info</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row"><span class="col col-50"><strong>Customer Name</strong></span><span class="col col-50" style="text-align: right">{{request.name}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Phone Number</strong></span><span class="col col-50" style="text-align: right">{{request.phoneNumber}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Delivery Time</strong></span><span class="col col-50" style="text-align: right">{{request.date}}, {{request.time}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Service Type</strong></span><span class="col col-50" style="text-align: right">{{request.stype}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Service Time</strong></span><span class="col col-50" style="text-align: right">{{request.stime}}</span></div>
+ <div class="item row"><span class="col col-50"><strong>Laundry Weight</strong></span><span class="col col-50" style="text-align: right">{{request.weight}}</span></div>
+ </ion-card-content>
+ </ion-card>
+ <ion-card>
+ <ion-card-header>
+ <h2>Delivery Address</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row"><span class="col col-100"><p>{{request.address}}</p></span></div>
+  </ion-card-content>
+ </ion-card>
+ <ion-card>
+ <ion-card-header>
+ <h2>Delivery Note</h2>
+ </ion-card-header>
+ <ion-card-content>
+ <div class="item row">
+	<span class="col col-100">
+	<p *ngIf=" request.note != ''">{{request.note}}</p>
+	<p *ngIf=" request.note == ''">-</p>
+	</span>
+ </div>
+  </ion-card-content>
+ </ion-card>
  </ion-item>
  </ion-list>
 </ion-content>
+<ion-footer no-shadow no-border>
+	<ion-toolbar position="bottom" transparent *ngFor="let request of requestList">
+		<button ion-button full (click)="take(request.requestID, userID, request.type, request.orderID)">Deliver</button>
+	</ion-toolbar>
+</ion-footer>

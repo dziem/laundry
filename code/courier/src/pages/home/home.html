@@ -1,25 +1,27 @@
 <ion-header>
  <ion-navbar hideBackButton="true">
- <ion-title>
+ <ion-title text-center>
  Home
  </ion-title>
- <ion-buttons end>
- <button ion-button (click)="goFind()">Find Request</button>
- 
- </ion-buttons>
  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- <ion-list>
- <!--<ion-item *ngFor="let request of requestList" (click)="goDetail(order.orderID)">-->
- <ion-item *ngFor="let request of requestList">
- <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
- <p>{{request.date}} - {{request.time}}</p>
- <ion-buttons end>
- <button *ngIf=" request.type == 'Pickup'" (click)="pickup(request.requestID)" ion-button>View Detail</button>
- <button *ngIf=" request.type == 'Delivery'" (click)="delivery(request.requestID)" ion-button>View Detail</button>
- </ion-buttons>
- </ion-item>
- </ion-list>
+  <ion-card *ngFor="let request of requestList">
+   
+   <ion-card-content>
+      <h1>{{request.type}}</h1>
+	  <p>{{request.date}}, {{request.time}}</p>
+	  <p>{{request.address}}</p>
+	  <p>Status : {{request.rstatus}}</p>
+	  <button *ngIf=" request.type == 'Pickup'" (click)="pickup(request.requestID)" ion-button>View Detail</button>
+	  <button *ngIf=" request.type == 'Delivery'" (click)="delivery(request.requestID)" ion-button>View Detail</button>
+   </ion-card-content>
+   
+</ion-card>
 </ion-content>
+<ion-footer no-shadow no-border>
+	<ion-toolbar position="bottom" transparent>
+		<button ion-button full (click)="goFind()">Find Request</button>
+	</ion-toolbar>
+</ion-footer>

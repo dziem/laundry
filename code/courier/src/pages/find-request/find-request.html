@@ -1,23 +1,22 @@
 <ion-header>
  <ion-navbar>
- <ion-title>
+ <ion-title text-center>
  Request List
  </ion-title>
  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- <ion-list>
- <ion-item *ngFor="let request of requestList">
- <h2>{{request.type}}</h2><p item-right> {{request.address}}</p>
- <p>{{request.date}} - {{request.time}}</p>
- <ion-buttons end>
- <button ion-button (click)="take(request.requestID, userID, request.type, request.orderID)">Take</button>
- </ion-buttons>
- <ion-buttons end>
- <button *ngIf=" request.type == 'Pickup'" (click)="pick(request.requestID)" ion-button>View Detail</button>
+<ion-card *ngFor="let request of requestList">
+   
+   <ion-card-content>
+      <h1>{{request.type}}</h1>
+	  <p>{{request.date}}, {{request.time}}</p>
+	  <p>{{request.address}}</p>
+	  <button *ngIf=" request.type == 'Pickup'" (click)="pick(request.requestID)" ion-button>View Detail</button>
  <button *ngIf=" request.type == 'Delivery'" (click)="deliver(request.requestID)" ion-button>View Detail</button>
- </ion-buttons>
- </ion-item>
- </ion-list>
+	  <button ion-button (click)="take(request.requestID, userID, request.type, request.orderID)">Take</button>
+   </ion-card-content>
+   
+</ion-card>
 </ion-content>

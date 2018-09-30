@@ -48,7 +48,7 @@ public request: any = {};
 });
 alert.present();
 this.navCtrl.pop();
-this.navCtrl.push(PickedDetailPage, {
+this.navCtrl.push(DeliveredDetailPage, {
       requestID: requestID
     });
  }else{
