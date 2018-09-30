@@ -1,0 +1,17 @@
+<ion-list no-lines>
+
+    <ion-item  >
+
+      <ion-input  round type="text" [(ngModel)]="user.username" placeholder="Username"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
+
+    </ion-item>
+
+    <button ion-button round block (click)="insert()">Register</button>
+
+  </ion-list>

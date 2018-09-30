@@ -1,0 +1,69 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Order</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ <ion-list>
+ <ion-item>
+ <ion-label stacked>Customer Name</ion-label>
+ <ion-input type="text" [(ngModel)]="order.name"></ion-input>
+ </ion-item>
+ <ion-item>
+ <ion-label stacked>Phone Number</ion-label>
+ <ion-input type="text" [(ngModel)]="order.phone"></ion-input>
+ </ion-item>
+ <ion-list radio-group [(ngModel)]="order.stype">
+  <ion-list-header>
+    Service Type
+  </ion-list-header>
+  <ion-item>
+    <ion-label>Wash (4000/kg)</ion-label>
+    <ion-radio value="Wash"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Wash and Iron(5000/kg)</ion-label>
+    <ion-radio value="Wash and Iron"></ion-radio>
+  </ion-item>
+</ion-list>
+<ion-list radio-group [(ngModel)]="order.stime">
+  <ion-list-header>
+    Service Time
+  </ion-list-header>
+  <ion-item>
+    <ion-label>Regular (2 - 3 days) (no extra charge)</ion-label>
+    <ion-radio value="Regular"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fast (1 - 2 days) (extra 1500/kg)</ion-label>
+    <ion-radio value="Fast"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Super Fast (< 1 days) (extra 3000/kg)</ion-label>
+    <ion-radio value="Super Fast"></ion-radio>
+  </ion-item>
+</ion-list>
+<ion-item>
+    <ion-label stacked>Order Pickup Date</ion-label>
+    <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="order.date"></ion-datetime>
+</ion-item>
+<ion-item>
+    <ion-label stacked>Order Pickup Time</ion-label>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="order.time"></ion-datetime>
+</ion-item>
+<ion-item>
+ <ion-label stacked>Pickup Address</ion-label>
+ <ion-textarea [(ngModel)]="order.address"></ion-textarea >
+ </ion-item>
+ <ion-item>
+ <ion-label stacked>Note (Optional)</ion-label>
+ <ion-textarea [(ngModel)]="order.note"></ion-textarea >
+ </ion-item>
+
+ <button ion-button full (click)="insert(userID)">Order</button>
+ </ion-list>
+</ion-content>

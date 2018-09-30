@@ -1,0 +1,29 @@
+<ion-header>
+ <ion-navbar hideBackButton="true">
+ <ion-title text-center>
+ Home
+ </ion-title>
+ </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-card *ngFor="let order of orderList">
+   <ion-card-header>
+      Order #{{order.orderID}}
+   </ion-card-header>
+   
+   <ion-card-content>
+      <h2>{{order.stype}}</h2>
+	  <p>Total price : {{order.price}}</p>
+	  <p>Status : {{order.status}}</p>
+	  <button ion-button (click)="goDetail(order.orderID)">View Detail</button>
+	  <button ion-button *ngIf=" order.status == 'Ready To Deliver'" (click)="goRequest(order.orderID)">Schedule Delivery</button>
+   </ion-card-content>
+   
+</ion-card>
+</ion-content>
+<ion-footer no-shadow no-border>
+	<ion-toolbar position="bottom" transparent>
+		<button ion-button full (click)="goAddNew()">Order</button>
+	</ion-toolbar>
+</ion-footer>

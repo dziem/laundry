@@ -1,0 +1,31 @@
+<!--
+  Generated template for the DetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Order Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-row *ngFor="let order of orderList">
+<ion-col col-12>
+ <h1>{{order.status}}</h1>
+ <p><strong>Order Name : </strong>{{order.name}} ({{order.phoneNumber}})</p>
+ <p><strong>Order Type : </strong>{{order.stype}}</p>
+ <p><strong>Laundry Weight : </strong>{{order.weight}}</p>
+ <p><strong>Total Price : </strong>{{order.price}}</p>
+ </ion-col>
+ </ion-row>
+</ion-content>
+<ion-footer no-shadow no-border>
+	<ion-toolbar position="bottom" transparent *ngFor="let order of orderList">
+		<button ion-button full *ngIf=" order.status == 'Ready To Deliver'" (click)="goRequest(order.orderID)">Schedule Delivery</button>
+	</ion-toolbar>
+</ion-footer>
