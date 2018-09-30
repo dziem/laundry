@@ -1,18 +1,17 @@
-<ion-header>
- <ion-navbar>
- <ion-title>Register</ion-title>
- </ion-navbar>
-</ion-header>
-<ion-content padding>
- <ion-list>
- <ion-item>
- <ion-label stacked>Username</ion-label>
- <ion-input type="text" [(ngModel)]="user.username"></ion-input>
- </ion-item>
- <ion-item>
- <ion-label stacked>Password</ion-label>
- <ion-input type="text" [(ngModel)]="user.password"></ion-input>
- </ion-item>
- <button ion-button (click)="insert()">Register</button>
- </ion-list>
-</ion-content>
+<ion-list no-lines>
+
+    <ion-item  >
+
+      <ion-input  round type="text" [(ngModel)]="user.username" placeholder="Username"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
+
+    </ion-item>
+
+    <button ion-button round block (click)="insert()">Register</button>
+
+  </ion-list>
